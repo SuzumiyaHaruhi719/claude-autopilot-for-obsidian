@@ -1,18 +1,28 @@
-# 🧭 Obsidian Autopilot
+<p align="center">
+  <img src="docs/hero.png" alt="Obsidian Autopilot" width="100%">
+</p>
 
-> A cross-platform [Claude Code](https://claude.com/claude-code) skill that turns an **Obsidian vault into the single source of truth for your codebase** — and keeps it that way automatically.
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-7c3aed"></a>
+  <img alt="Platforms" src="https://img.shields.io/badge/platform-macOS%20%C2%B7%20Linux%20%C2%B7%20Windows-22d3ee">
+  <img alt="Python 3.8+" src="https://img.shields.io/badge/python-3.8%2B-a855f7">
+  <img alt="Zero dependencies" src="https://img.shields.io/badge/deps-zero-2b2640">
+  <img alt="Claude Code skill" src="https://img.shields.io/badge/Claude%20Code-skill-9b59f6">
+</p>
+
+<p align="center">
+  <b>Turn your Obsidian vault into the single source of truth for your codebase — and keep it that way automatically.</b>
+</p>
 
 Claude reads the right notes before it changes code, writes structured notes
 *as* it changes code, archives every conversation, cross-links related sessions,
 and git-syncs the vault. One pure-Python toolkit. **macOS · Linux · Windows.**
 
-```mermaid
-flowchart LR
-    Code["💻 Your code"] <-->|"Claude edits"| Claude(("🤖 Claude"))
-    Claude <-->|"reads context<br/>writes notes"| Vault["🗄️ Obsidian Vault<br/>(source of truth)"]
-    Vault <-->|"auto pull / push"| GH["☁️ GitHub"]
-    Claude -.->|"archives chats"| Hist["📚 Agent History<br/>(local, redacted)"]
-```
+<p align="center">
+  <img src="docs/demo.gif" alt="Claude wiring up the Obsidian knowledge graph like neural synapses as it works" width="88%">
+  <br>
+  <sub><i>The vault's knowledge graph forming in real time — notes light up, wiki-links connect like synapses firing.</i></sub>
+</p>
 
 ---
 

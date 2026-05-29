@@ -12,6 +12,9 @@ obsidian-pilot.config.json
 *.lock
 *.last
 
+# Demo build artifacts (the rendered hero.png / demo.gif are committed; frames are not)
+docs/frames/
+
 # OS cruft
 .DS_Store
 Thumbs.db
