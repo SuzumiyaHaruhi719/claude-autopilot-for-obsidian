@@ -198,6 +198,40 @@ flowchart LR
 - `init` is **additive and idempotent** — run it in each new project; existing
   files are never overwritten.
 
+### Auto-document an existing codebase: `/obsidian-init`
+
+`pilot.py init` lays down an *empty* skeleton. To **fill it from your actual
+code**, use the bundled slash command — type it in the Claude Code CLI:
+
+```
+/obsidian-init
+```
+
+Claude then reads through the whole codebase and writes a richly cross-linked
+vault: one note per **feature** and per **module**, each citing the real
+`file:line` entry point, every dependency wired up with `[[wiki-links]]`, plus
+data-flow, architecture, risk-map and glossary notes — so the vault's graph
+mirrors how the project is actually built.
+
+```mermaid
+flowchart LR
+    Cmd["/obsidian-init"] --> Scan["🔎 Claude reads<br/>the whole codebase"]
+    Scan --> Feat["📝 10-Features/*<br/>one note per feature<br/>(entry point + how it works)"]
+    Scan --> Mod["🧩 20-Modules/*<br/>one note per module"]
+    Feat <-->|"[[wiki-links]]"| Mod
+    Feat --> Idx["🗺️ 00-Index + Architecture<br/>+ Data-Flows + Risk-Map"]
+    Mod --> Idx
+```
+
+Install the command once by copying it where Claude Code looks for commands:
+
+```bash
+# user-wide
+cp commands/obsidian-init.md ~/.claude/commands/
+# or per-project
+mkdir -p .claude/commands && cp commands/obsidian-init.md .claude/commands/
+```
+
 To make Claude follow the **semantic** workflow too, expose the skill — either
 symlink/copy the repo into `~/.claude/skills/obsidian-autopilot/`, or install it
 as a plugin. Claude will then load `SKILL.md` automatically when your work
@@ -300,6 +334,11 @@ claude-obsidian-autopilot/
 ├── SKILL.md                  # the semantic workflow Claude follows
 ├── config.example.json       # config template
 ├── README.md
+├── commands/
+│   └── obsidian-init.md      # /obsidian-init slash command (auto-document a codebase)
+├── docs/
+│   ├── make_demo.py          # renders the animated demo GIF
+│   └── make_hero.py          # renders the hero banner
 └── obsidian_pilot/           # pure-stdlib package
     ├── util.py               # paths, logging, locking, atomic writes
     ├── config.py             # discovery, schema, defaults
