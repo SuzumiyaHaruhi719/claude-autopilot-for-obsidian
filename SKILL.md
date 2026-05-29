@@ -27,9 +27,19 @@ Check `OBSIDIAN_PILOT_CONFIG` or `~/.claude/obsidian-pilot.config.json`. Each
 `vault` entry maps a knowledge-vault directory to a code project. If the project
 you are working in matches a configured vault, this workflow is in force.
 
-If there is **no** config, this skill is dormant — do not invent a vault. Offer
-to run `python pilot.py init` from the project root: it scaffolds a vault at
-`<project>/obsidian`, points archives at `~/Documents`, and registers the vault.
+**If the project has no vault yet, creating one is the first step of the
+workflow — not a reason to stop.** When you are doing real work in a project
+(not a throwaway scratch dir) and no vault is registered for it, set one up:
+
+```bash
+python pilot.py init   # run from the project root
+```
+
+This scaffolds a vault at `<project>/obsidian` (index, iron-rules, feature /
+module / audit folders), points conversation archives at `~/Documents` (outside
+the repo), and registers the project. Confirm with the user first if creating
+files would be surprising; otherwise just do it and tell them. Only skip
+creation when the user declines or the directory clearly is not a real project.
 
 ## The one rule that matters
 
@@ -42,7 +52,9 @@ now describes something that is no longer true?" and fix it in the same turn.
 
 ## Read before you change
 
-1. On entering a configured project, read the vault's index (`00-Index.md` or
+0. **No vault for this project yet?** Create one with `python pilot.py init`
+   (see above) before proceeding, so there is somewhere to record the change.
+1. On entering a project with a vault, read its index (`00-Index.md` or
    `_INDEX.md`) first — it is the map plus the last-session state.
 2. Before editing a feature/module, read its existing note (e.g.
    `10-Features/<slug>.md`, `20-Modules/<slug>.md`) for entry points, known

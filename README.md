@@ -134,7 +134,10 @@ What actually happens across one unit of work:
 
 ```mermaid
 flowchart TD
-    Start([You ask Claude to change something]) --> Read{Vault note exists<br/>for this area?}
+    Start([You ask Claude to change something]) --> HasVault{Vault exists<br/>for this project?}
+    HasVault -- no --> Create["🌱 Create one<br/>python pilot.py init<br/>scaffolds &lt;project&gt;/obsidian"]
+    Create --> Read
+    HasVault -- yes --> Read{Note exists<br/>for this area?}
     Read -- yes --> ReadIt["📖 Read the note first<br/>(entry points, known issues)"]
     Read -- no --> Skip[Proceed]
     ReadIt --> Edit["✏️ Edit the code"]
